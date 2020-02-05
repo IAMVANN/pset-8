@@ -111,3 +111,9 @@ h2 {
   color: white;
   cursor: pointer;
 }
+#start {
+    background-color: white;
+    flex-wrap: wrap;              /* tells container to drop down once it reaches max-width */
+    height: 456px;
+    width: 456px;
+}

@@ -15,23 +15,41 @@ let turn;
 let win;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
+const warp = document.getElementById("board");
 const message = document.querySelector("h2");
 const start = document.getElementById("start");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 //window.onload = init; this is orginal
 window.onload = starting;
 start.onclick = starty
-document.getElementById("board").onclick = takeTurn;
+//document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function starting(){
   let button = document.createElement("button");
   button.innerHTML = "START";
-  start.prepend;
+  let text = document.createElement("h2");
+  text.innerHTML = "SCORE";
+  start.prepend(text);
+  start.append(button);
 }
 function starty(object){
-  let thingy = object.target;
-  console.log("THINGY")
+    thingy = object.target
+  console.log(thingy.type)
+  if (thingy.type == "submit"){
+      draw();
+  }
+}
+function draw(){
+    start.remove();
+    for(let i = 0; i < 9; i++){
+         let text = document.createElement("div");
+         text.className = "Squares"
+
+        //s.class = "square";
+        warp.prepend(text);
+    }
+
 }
 function init(){
   board = [
