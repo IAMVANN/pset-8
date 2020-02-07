@@ -76,6 +76,9 @@ function takeTurn(e){
   if (board[index] === ""){
     board[index] = turn;
     turn = turn === "X" ? "O" : "X";
+    if(turn == "O" && (condition == "medium" || condition == "easy" || condition == "hard")){
+        airender();
+    }
     win = getWinner();
 
     render();
@@ -107,9 +110,35 @@ function reset(){
 function aio(object){
     let type = object.type;
     if(type == "medium" || type == "easy" || type == "hard"){
-        let condition = type;
+        condition = type;
         alert("Hey, AI will always be O, You will always be X. To turn off vs ai, click Play again");
+    } else if(type == "off"){
+        condition = "reg";
+        alert("AI OFF")
     }
 
 
+}
+function airender(){
+    if(condition == "easy"){
+        easypz();
+    } else if(condition == "medium"){
+        mediumpz();
+    } else if(condition == "hard"){
+        hardpz();
+    }
+    board.forEach(function(mark, index){
+      //console.log(mark,index);
+      squares[index].textContent = mark;
+    });
+}
+function easypz(){
+    let array = [];
+    let pos = 0;
+    board.foreach(index){
+        if(squares[index].textContent == "")}{
+            array[pos] = index;
+            pos++;
+        }
+    }
 }
