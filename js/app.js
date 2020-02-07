@@ -116,20 +116,20 @@ function aio(object){
         condition = "reg";
         alert("AI OFF")
     }
-
+    init();
 
 }
 function airender(){
     if(condition == "easy"){
-        easypz();
+        let a = easypz();
     } else if(condition == "medium"){
-        mediumpz();
+        let a = mediumpz();
     } else if(condition == "hard"){
-        hardpz();
+        let a = hardpz();
     }
-    board.forEach(function(mark, index){
+    board.forEach(function(mark, a){
       //console.log(mark,index);
-      squares[index].textContent = mark;
+      squares[a].textContent = mark;
     });
 }
 function easypz(){
@@ -141,4 +141,7 @@ function easypz(){
             pos++;
         }
     }
+    let b = pos * Math.random();
+    b = Math.floor(b);
+    return array[b];
 }
