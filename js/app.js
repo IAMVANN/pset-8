@@ -11,63 +11,55 @@ const winningConditions = [
 ];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
-let turn;
+let turn = "X";
 let win;
+let owin = 0;
+let xwin = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const warp = document.getElementById("board");
-const message = document.querySelector("h2");
-const start = document.getElementById("start");
+const message = document.getElementById("Turny");
+const winrate = document.getElementById("Wincount");
+const ot = document.getElementById("O");
+const xt = document.getElementById("X");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
-//window.onload = init; this is orginal
-window.onload = starting;
-start.onclick = starty
-//document.getElementById("board").onclick = takeTurn;
+window.onload = init;
+
+document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
+document.getElementById("O").onclick = init;
+document.getElementById("X").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
-function starting(){
-  let button = document.createElement("button");
-  button.innerHTML = "START";
-  let text = document.createElement("h2");
-  text.innerHTML = "SCORE";
-  start.prepend(text);
-  start.append(button);
-}
-function starty(object){
-    thingy = object.target
-  console.log(thingy.type)
-  if (thingy.type == "submit"){
-      draw();
-  }
-}
-function draw(){
-    start.remove();
-    for(let i = 0; i < 9; i++){
-         let text = document.createElement("div");
-         text.className = "Squares"
-
-        //s.class = "square";
-        warp.prepend(text);
-    }
-
-}
-function init(){
+function init(object){
   board = [
     "","","",
     "","","",
     "","",""
   ];
-  turn = "X"
+  console.log(object.target)
+  if(object.target == ot){
+      turn = "O"
+  } else{
+      turn = "X"
+  }
+
   win = null;
   render();
 }
 function render(){
   board.forEach(function(mark, index){
-    console.log(mark,index);
+    //console.log(mark,index);
     squares[index].textContent = mark;
   });
   message.textContent =
   win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
+ // console.log(win)
+  if(win === "X"){
+      xwin++;
+  } else if(win === "O"){
+      owin++;
+  }
+  winrate.textContent = " X : " + xwin + " || O : "  + owin;
 }
 function takeTurn(e){
   if(!win){
