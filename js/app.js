@@ -11,13 +11,10 @@ const winningConditions = [
 ];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
-let startTurn = "X"
 let turn = "X";
 let win;
 let owin = 0;
 let xwin = 0;
-let condition = "reg";
-let ai = false;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const warp = document.getElementById("board");
@@ -25,17 +22,13 @@ const message = document.getElementById("Turny");
 const winrate = document.getElementById("Wincount");
 const ot = document.getElementById("O");
 const xt = document.getElementById("X");
-const easy = document.getElementById("easy");
-const medium = document.getElementById("medium");
-const hard = document.getElementById("hard");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-ot.onclick = initTurn;
-xt.onclick = initTurn;
-easy.onclick = aio;
+document.getElementById("O").onclick = init;
+document.getElementById("X").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(object){
   board = [
@@ -43,16 +36,21 @@ function init(object){
     "","","",
     "","",""
   ];
-  turn = startTurn;
+  console.log(object.target)
+  if(object.target == ot){
+      turn = "O"
+  } else{
+      turn = "X"
+  }
+
   win = null;
   render();
 }
 function render(){
-        board.forEach(function(mark, index){
-          //console.log(mark,index);
-          squares[index].textContent = mark;
-          console.log(mark)
-        });
+  board.forEach(function(mark, index){
+    //console.log(mark,index);
+    squares[index].textContent = mark;
+  });
   message.textContent =
   win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
  // console.log(win)
@@ -91,64 +89,4 @@ function getWinner(){
    }
     })
       return winner ? winner : board.includes("") ? null : "T";
-}
-function reset(){
-    if(condition == "reg"){
-        init();
-    } else{
-        aio();
-    }
-
-}
-function aio(object){
-    ai = true;
-    let type = object.target;
-    if(type == medium || type == easy || type == hard){
-        condition = type;
-        alert("Hey, AI will always be O, You will always be X. To turn off vs ai, click Play again");
-    } else if(type == "off"){
-        condition = "reg";
-        alert("AI OFF")
-    }
-    takeTurn(object);
-
-}
-function airender(){
-    alert("HI")
-    let a;
-    if(condition == easy){
-        a = easypz();
-    } else if(condition == "medium"){
-        a = mediumpz();
-    } else if(condition == "hard"){
-        a = hardpz();
-    }
-    board.forEach(function(mark, index){
-      //console.log(mark,index);
-      squares[a].textContent = mark;
-      console.log(a)
-
-    });
-}
-function easypz(){
-    let array = [];
-    let pos = 0;
-    board.forEach(function(mark, index){
-        if(squares[index].textContent == ""){
-            array[pos] = index;
-            pos++;
-        }
-    })
-    let b = pos * Math.random();
-    b = Math.floor(b);
-    console.log(array[b])
-    return array[b];
-}
-function initTurn(object){
-    if(object.target == ot){
-        startTurn = "O"
-    } else {
-        startTurn = "X";
-    }
-    init();
 }
