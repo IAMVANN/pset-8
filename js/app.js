@@ -28,8 +28,8 @@ window.onload = init;
 
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("O").onclick = tuner;
-document.getElementById("X").onclick = tuner;
+document.getElementById("O").onclick = turner;
+document.getElementById("X").onclick = turner;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(){
   board = [
