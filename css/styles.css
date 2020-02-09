@@ -112,6 +112,7 @@ h2 {
   cursor: pointer;
 }
 #Wincount { 
-    left: 200px;
+    position : static;
+    left: 20%;
     bottom: 20%;
 }
