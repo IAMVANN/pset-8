@@ -25,7 +25,6 @@ const ot = document.getElementById("O");
 const xt = document.getElementById("X");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
-
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 document.getElementById("O").onclick = turner;
@@ -50,20 +49,20 @@ function render(){
   message.textContent =
   win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
  // console.log(win)
-  if(win === "X"){
+  if (win === "X") {
       xwin++;
-  } else if(win === "O"){
+  } else if (win === "O") {
       owin++;
   }
   winrate.textContent = " X : " + xwin + " || O : "  + owin;
 }
 function takeTurn(e){
-  if(!win){
+  if (!win) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
     });
 
-  if (board[index] === ""){
+  if (board[index] === "") {
     board[index] = turn;
     turn = turn === "X" ? "O" : "X";
     win = getWinner();
@@ -73,7 +72,7 @@ function takeTurn(e){
 }
 
 }
-function getWinner(){
+function getWinner() {
     let winner = null;
     winningConditions.forEach(function(condition, index){
       if (
@@ -86,11 +85,11 @@ function getWinner(){
     })
       return winner ? winner : board.includes("") ? null : "T";
 }
-function turner(e){
+function turner(e) {
     let target = e.target;
-    if(target == ot){
+    if(target == ot) {
         startTurn = "O";
-    } else if(target == xt){
+    } else if(target == xt) {
         startTurn = "X";
     }
     init();
