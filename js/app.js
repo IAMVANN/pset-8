@@ -15,6 +15,7 @@ let turn = "X";
 let win;
 let owin = 0;
 let xwin = 0;
+let startTurn = "X"
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const warp = document.getElementById("board");
@@ -27,21 +28,16 @@ window.onload = init;
 
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("O").onclick = init;
-document.getElementById("X").onclick = init;
+document.getElementById("O").onclick = tuner;
+document.getElementById("X").onclick = tuner;
 ///////////////////// FUNCTIONS /////////////////////////////////////
-function init(object){
+function init(){
   board = [
     "","","",
     "","","",
     "","",""
   ];
-  console.log(object.target)
-  if(object.target == ot){
-      turn = "O"
-  } else{
-      turn = "X"
-  }
+  turn = startTurn;
 
   win = null;
   render();
@@ -89,4 +85,13 @@ function getWinner(){
    }
     })
       return winner ? winner : board.includes("") ? null : "T";
+}
+function turner(e){
+    let target = e.target;
+    if(target == ot){
+        startTurn = "O";
+    } else if(target == xt){
+        startTurn = "X";
+    }
+    init();
 }
