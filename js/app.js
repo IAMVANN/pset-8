@@ -43,20 +43,16 @@ function init(object){
     "","","",
     "","",""
   ];
-turn = startTurn;
+  turn = startTurn;
   win = null;
   render();
 }
 function render(){
-    if(ai == true){
-
-    } else {
         board.forEach(function(mark, index){
           //console.log(mark,index);
           squares[index].textContent = mark;
+          console.log(mark)
         });
-    }
-
   message.textContent =
   win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
  // console.log(win)
@@ -107,34 +103,37 @@ function reset(){
 function aio(object){
     ai = true;
     let type = object.target;
-    if(type == "medium" || type == "easy" || type == "hard"){
+    if(type == medium || type == easy || type == hard){
         condition = type;
         alert("Hey, AI will always be O, You will always be X. To turn off vs ai, click Play again");
     } else if(type == "off"){
         condition = "reg";
         alert("AI OFF")
     }
-    init(object);
+    takeTurn(object);
 
 }
 function airender(){
     alert("HI")
-    if(condition == "easy"){
-        let a = easypz();
+    let a;
+    if(condition == easy){
+        a = easypz();
     } else if(condition == "medium"){
-        let a = mediumpz();
+        a = mediumpz();
     } else if(condition == "hard"){
-        let a = hardpz();
+        a = hardpz();
     }
-    board.forEach(function(mark, a){
+    board.forEach(function(mark, index){
       //console.log(mark,index);
       squares[a].textContent = mark;
+      console.log(a)
+
     });
 }
 function easypz(){
     let array = [];
     let pos = 0;
-    board.foreach(function(index){
+    board.forEach(function(mark, index){
         if(squares[index].textContent == ""){
             array[pos] = index;
             pos++;
@@ -142,7 +141,7 @@ function easypz(){
     })
     let b = pos * Math.random();
     b = Math.floor(b);
-    alert("IADF");
+    console.log(array[b])
     return array[b];
 }
 function initTurn(object){
