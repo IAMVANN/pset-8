@@ -30,7 +30,7 @@ document.getElementById("reset-button").onclick = init;
 document.getElementById("O").onclick = turner;
 document.getElementById("X").onclick = turner;
 ///////////////////// FUNCTIONS /////////////////////////////////////
-function init(){
+function init() {
   board = [
     "","","",
     "","","",
@@ -41,7 +41,7 @@ function init(){
   win = null;
   render();
 }
-function render(){
+function render() {
   board.forEach(function(mark, index){
     //console.log(mark,index);
     squares[index].textContent = mark;
@@ -56,7 +56,7 @@ function render(){
   }
   winrate.textContent = " X : " + xwin + " || O : "  + owin;
 }
-function takeTurn(e){
+function takeTurn(e) {
   if (!win) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
@@ -74,7 +74,7 @@ function takeTurn(e){
 }
 function getWinner() {
     let winner = null;
-    winningConditions.forEach(function(condition, index){
+    winningConditions.forEach(function(condition, index) {
       if (
      board[condition[0]] &&
      board[condition[0]] === board[condition[1]] &&
