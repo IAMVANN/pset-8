@@ -111,17 +111,20 @@ h2 {
   color: white;
   cursor: pointer;
 }
-#Wincount { 
+#Wincount {
     position : static;
     left: 20%;
     bottom: 20%;
 }
-#O; #X {
+#X {
     color : blue;
 }
-#O : hover {
+#O {
+    color : blue;
+}
+#O:hover {
     color : orange;
 }
-#X : hover {
+#X:hover {
     color : orange
 }
