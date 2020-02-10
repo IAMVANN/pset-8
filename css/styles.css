@@ -119,9 +119,11 @@ h2 {
 }
 #X {
     color : blue;
+    text-align: inherit;
 }
 #O {
     color : blue;
+    text-align: inherit;
 }
 #O:hover {
     color : orange;
