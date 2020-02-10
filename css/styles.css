@@ -83,7 +83,7 @@ h2 {
  */
 
 .square:hover {
-  background-color: lightgray;
+  background-color: lightgreen;
   cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ h2 {
  */
 
 #reset-button {
-  background-color: white;
+  background-color: lightgreen;
   border: 1px solid black;
   color: black;
   font-size: 21px;
@@ -108,8 +108,8 @@ h2 {
  */
 
 #reset-button:hover {
-  background-color: black;
-  color: white;
+  background-color: #ffa500;
+  color: lightgreen;
   cursor: pointer;
 }
 #Wincount {
