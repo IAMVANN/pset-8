@@ -119,3 +119,9 @@ h2 {
 #O; #X {
     color : blue;
 }
+#O : hover {
+    color : orange;
+}
+#X : hover {
+    color : orange
+}
